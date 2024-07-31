@@ -35,14 +35,24 @@ int main (){
         valorG = G / auxSoma;
         valorB = B / auxSoma;
     
-        if ((R < 0 || R > 255) or (G < 0 || G > 255) or (B < 0 || B > 255)){
-            cout << "Digite um valor RGB válido" << endl;
+        if (R < 0 || R > 255 or G < 0 || G > 255 or B < 0 || B > 255){
+            cout << "Digite um valor RGB valido entre 0 - 255" << endl;
         } else {
             cout << fixed << setprecision(2) <<  valorR <<" "<< valorG <<" "<< valorB << endl;
         }
         
+    } else if(inicio == 2) {
+        cout << "Software em Manutencao aguarde" << endl;
+    } else if(inicio == 3) {
+        cout << "Software em Manutencao aguarde 3 " << endl;
+    } else if(inicio == 4) {
+        cout << "Software em Manutencao aguarde 4" << endl;
+    } else if(inicio == 5) {
+        cout << "Software em Manutencao aguarde 5" << endl;
+    } else if(inicio == 6) {
+        cout << "Software em Manutencao aguarde 6" << endl;
     } else {
-        cout << "Valor não correspondente" << endl;
+        cout << "Valor nao correspondente" << endl;
     }
     
 return 0;
