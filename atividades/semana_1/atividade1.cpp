@@ -14,13 +14,17 @@ int main (){
     cout << "Digite de acordo com a tabela o valor a ser convertido"<< endl; 
     int inicio;
     cin >> inicio;
-    
-    // Primeiro IF conversão de RGB para os demais
+
+    //variaveis necessárias
+    float R, G, B;
+    float C, M, Y, K;
+        
+    // normalizar um valor RGB
     if (inicio == 1){
         float auxSoma;
         double valorR, valorG, valorB;
-        float R, G, B;
-        
+       
+
         cout << "Digite o valor R desejado: " << endl;
             cin >> R;
         cout << "Digite o valor G desejado: " << endl;
@@ -41,14 +45,30 @@ int main (){
             cout << fixed << setprecision(2) <<  valorR <<" "<< valorG <<" "<< valorB << endl;
         }
         
-    } else if(inicio == 2) {
-        cout << "Software em Manutencao aguarde" << endl;
+    } else if(inicio == 2) {   
+        cout << "Software em Manutencao aguarde 3 " << endl;   
     } else if(inicio == 3) {
         cout << "Software em Manutencao aguarde 3 " << endl;
     } else if(inicio == 4) {
         cout << "Software em Manutencao aguarde 4" << endl;
-    } else if(inicio == 5) {
-        cout << "Software em Manutencao aguarde 5" << endl;
+    
+    } else if(inicio == 5) { // conversão de CMYK para RGB
+        
+        cout << "Digite o valor C desejado: " << endl;
+            cin >> C;
+        cout << "Digite o valor M desejado: " << endl;
+            cin >> M;
+        cout << "Digite o valor Y desejado: " << endl;
+            cin >> Y;
+        cout << "Digite o valor K desejado: " << endl;
+            cin >> K;
+
+        R = 255 * (1-C) * (1-K);
+        G = 255 * (1-M) * (1-K);
+        B = 255 * (1-Y) * (1-K);
+
+        cout << R << ", " << G << ", " << B << endl;
+
     } else if(inicio == 6) {
         cout << "Software em Manutencao aguarde 6" << endl;
     } else {
