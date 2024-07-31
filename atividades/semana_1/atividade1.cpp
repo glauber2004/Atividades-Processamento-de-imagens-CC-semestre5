@@ -63,11 +63,15 @@ int main (){
         cout << "Digite o valor K desejado: " << endl;
             cin >> K;
 
-        R = 255 * (1-C) * (1-K);
-        G = 255 * (1-M) * (1-K);
-        B = 255 * (1-Y) * (1-K);
+        R = 255 * (1-(C/100)) * (1-(K/100));
+        G = 255 * (1-(M/100)) * (1-(K/100));
+        B = 255 * (1-(Y/100)) * (1-(K/100));
 
-        cout << R << ", " << G << ", " << B << endl;
+        if (C < 0 || C > 100 or M < 0 || M > 100 or Y < 0 || Y > 100 or K < 0 || K > 100){
+            cout << "Digite um valor CMYK valido entre 0 - 100" << endl;
+        } else {
+            cout << fixed << setprecision(0) <<  R << ", " << G << ", " << B << endl;
+        }
 
     } else if(inicio == 6) {
         cout << "Software em Manutencao aguarde 6" << endl;
