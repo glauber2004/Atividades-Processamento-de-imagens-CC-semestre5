@@ -6,11 +6,11 @@ int main (){
     
     // Início
     cout << "1 = Normalizar um valor RGB" << endl;
-    cout << "2 = Conversão RGB para HSV" << endl;
-    cout << "3 = Conversão HSV para RGB" << endl;
-    cout << "4 = Conversão RGB para CMYK" << endl;
-    cout << "5 = Conversão CMYK para RGB" << endl;
-    cout << "6 = Conversão RGB para Escala Cinza" << endl;
+    cout << "2 = Converter RGB para HSV" << endl;
+    cout << "3 = Converter HSV para RGB" << endl;
+    cout << "4 = Converter RGB para CMYK" << endl;
+    cout << "5 = Converter CMYK para RGB" << endl;
+    cout << "6 = Converter RGB para Escala Cinza" << endl;
     cout << "Digite de acordo com a tabela o valor a ser convertido"<< endl; 
     int inicio;
     cin >> inicio;
@@ -45,19 +45,17 @@ int main (){
             cout << fixed << setprecision(2) <<  valorR <<" "<< valorG <<" "<< valorB << endl;
         }
         
-    } else if(inicio == 2) {   
+    } else if(inicio == 2) { // Conversão RGB para HSV 
         cout << "Software em Manutencao aguarde 3 " << endl;   
-    } else if(inicio == 3) {
+    } else if(inicio == 3) { // Conversão HSV para RGB 
         cout << "Software em Manutencao aguarde 3 " << endl;
 
 
 
     } else if(inicio == 4) { // conversão de RGB para CMYK
         
-        //Inicial achar o K
         double Rlinha, Glinha, Blinha;
        
-
         cout << "Digite o valor R desejado: " << endl;
             cin >> R;
         cout << "Digite o valor G desejado: " << endl;
@@ -80,7 +78,14 @@ int main (){
         C = (1-Rlinha-K)/(1-K);
         M = (1-Glinha-K)/(1-K);
         Y = (1-Blinha-K)/(1-K);
-    
+
+
+        if (R < 0 || R > 255 or G < 0 || G > 255 or B < 0 || B > 255){
+            cout << "Digite um valor RGB valido entre 0 - 255" << endl;
+        } else {
+            cout << fixed << setprecision(0) << C <<"%, "<< M <<"%, "<< Y << "%, "<< K << "%"<< endl;
+        }
+
 
 
     } else if(inicio == 5) { // conversão de CMYK para RGB
