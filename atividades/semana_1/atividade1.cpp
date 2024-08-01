@@ -49,9 +49,40 @@ int main (){
         cout << "Software em Manutencao aguarde 3 " << endl;   
     } else if(inicio == 3) {
         cout << "Software em Manutencao aguarde 3 " << endl;
-    } else if(inicio == 4) {
-        cout << "Software em Manutencao aguarde 4" << endl;
+
+
+
+    } else if(inicio == 4) { // conversão de RGB para CMYK
+        
+        //Inicial achar o K
+        double Rlinha, Glinha, Blinha;
+       
+
+        cout << "Digite o valor R desejado: " << endl;
+            cin >> R;
+        cout << "Digite o valor G desejado: " << endl;
+            cin >> G;
+        cout << "Digite o valor B desejado: " << endl;
+            cin >> B;
+
+        Rlinha = R/255;
+        Glinha = G/255; 
+        Blinha = B/255;
+
+        if(Rlinha >= Glinha && Rlinha >= Blinha){
+            K = 1 - Rlinha;
+        } else if(Glinha >= Rlinha && Glinha >= Blinha){
+            K = 1 - Glinha;
+        } else if(Blinha >= Rlinha && Blinha >= Glinha){
+            K = 1 - Blinha;
+        }
+
+        C = (1-Rlinha-K)/(1-K);
+        M = (1-Glinha-K)/(1-K);
+        Y = (1-Blinha-K)/(1-K);
     
+
+
     } else if(inicio == 5) { // conversão de CMYK para RGB
         
         cout << "Digite o valor C desejado: " << endl;
@@ -76,7 +107,7 @@ int main (){
     } else if(inicio == 6) {
         cout << "Software em Manutencao aguarde 6" << endl;
     } else {
-        cout << "Valor nao correspondente" << endl;
+        cout << "Valor nao correspondente, digite valores presentes na tabela" << endl;
     }
     
 return 0;
