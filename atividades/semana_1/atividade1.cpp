@@ -39,11 +39,8 @@ int main (){
         valorG = G / auxSoma;
         valorB = B / auxSoma;
     
-        if (R < 0 || R > 255 or G < 0 || G > 255 or B < 0 || B > 255){
-            cout << "Digite um valor RGB valido entre 0 - 255" << endl;
-        } else {
-            cout << fixed << setprecision(2) <<  valorR <<" "<< valorG <<" "<< valorB << endl;
-        }
+        cout << fixed << setprecision(2) <<  valorR <<" "<< valorG <<" "<< valorB << endl;
+        
         
     } else if(inicio == 2) { // Conversão RGB para HSV 
         cout << "Software em Manutencao aguarde 3 " << endl;   
@@ -92,25 +89,91 @@ int main (){
         
         cout << "Digite o valor C desejado: " << endl;
             cin >> C;
+            if (C < 0){
+                C = 0;
+            } else if (C > 100){
+                C = 100;
+            } else {
+                C = C;
+            }
+
         cout << "Digite o valor M desejado: " << endl;
             cin >> M;
+            if (M < 0){
+                M = 0;
+            } else if (M > 100){
+                M = 100;
+            } else {
+                M = M;
+            }
+
         cout << "Digite o valor Y desejado: " << endl;
             cin >> Y;
+            if (Y < 0){
+                Y = 0;
+            } else if (Y > 100){
+                Y = 100;
+            } else {
+                Y = Y;
+            }
+
         cout << "Digite o valor K desejado: " << endl;
             cin >> K;
+            if (K < 0){
+                K = 0;
+            } else if (K > 100){
+                K = 100;
+            } else {
+                K = K;
+            }
 
         R = 255 * (1-(C/100)) * (1-(K/100));
         G = 255 * (1-(M/100)) * (1-(K/100));
         B = 255 * (1-(Y/100)) * (1-(K/100));
+        
+        cout << fixed << setprecision(0) <<  R << ", " << G << ", " << B << endl;
 
-        if (C < 0 || C > 100 or M < 0 || M > 100 or Y < 0 || Y > 100 or K < 0 || K > 100){
-            cout << "Digite um valor CMYK valido entre 0 - 100" << endl;
-        } else {
-            cout << fixed << setprecision(0) <<  R << ", " << G << ", " << B << endl;
-        }
 
-    } else if(inicio == 6) {
-        cout << "Software em Manutencao aguarde 6" << endl;
+
+    } else if(inicio == 6) { // Escala de cinza
+
+        double escalacinza;
+
+        cout << "Digite o valor R desejado: " << endl;
+            cin >> R;
+            if (R < 0){
+                R = 0;
+            } else if (R > 255){
+                R = 255;
+            } else {
+                R = R;
+            }
+
+        cout << "Digite o valor G desejado: " << endl;
+            cin >> G;
+            if (G < 0){
+                G = 0;
+            } else if (G > 255){
+                G = 255;
+            } else {
+                G = G;
+            }
+            
+        cout << "Digite o valor B desejado: " << endl;
+            cin >> B;
+            if (B < 0){
+                B = 0;
+            } else if (B > 255){
+                B = 255;
+            } else {
+                B = B;
+            }
+
+        escalacinza = 0.299 * R + 0.587 * G + 0.114 * B;
+        cout << fixed << setprecision(0) << escalacinza << endl;
+    
+
+        
     } else {
         cout << "Valor nao correspondente, digite valores presentes na tabela" << endl;
     }
