@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 
 using namespace std;
@@ -56,11 +57,40 @@ int main (){
                 B = B;
             } 
 
+
+
+            // variaveis para utilização HSV -- CMYK 
+            double Rlinha, Glinha, Blinha;
+            double minimo, maximo;
+            Rlinha = R/255;
+            Glinha = G/255; 
+            Blinha = B/255;
+
+            //valor maximo
+            if(Rlinha >= Glinha && Rlinha >= Blinha){
+                maximo = Rlinha;
+            } else if(Glinha >= Rlinha && Glinha >= Blinha){
+                maximo = Glinha;
+            } else if(Blinha >= Rlinha && Blinha >= Glinha){
+                maximo = Blinha;
+            }
+
+            //valor minimo
+            if(Rlinha <= Glinha && Rlinha <= Blinha){
+                minimo = Rlinha;
+            } else if(Glinha <= Rlinha && Glinha <= Blinha){
+                minimo = Glinha;
+            } else if(Blinha <= Rlinha && Blinha <= Glinha){
+                minimo = Blinha;
+            }
+
+
+
         if (inicio == 1){
             // normalizar um valor RGB
             float auxSoma;
             double valorR, valorG, valorB;
-        
+
             auxSoma = R + G + B;
             valorR = R / auxSoma;
             valorG = G / auxSoma;
@@ -71,27 +101,19 @@ int main (){
 
         } else if (inicio == 2){
             // conversão de RGB para HSV
+
+        
+
+
         } else if (inicio == 4){
             // conversão de RGB para CMYK
-            double Rlinha, Glinha, Blinha;
-       
-            Rlinha = R/255;
-            Glinha = G/255; 
-            Blinha = B/255;
+            K = (1 - maximo);
+            C = ((1-Rlinha-K)/(1-K)) * 100;
+            M = ((1-Glinha-K)/(1-K)) * 100;
+            Y = ((1-Blinha-K)/(1-K)) * 100;
+            
 
-            if(Rlinha >= Glinha && Rlinha >= Blinha){
-                K = 1 - Rlinha;
-            } else if(Glinha >= Rlinha && Glinha >= Blinha){
-                K = 1 - Glinha;
-            } else if(Blinha >= Rlinha && Blinha >= Glinha){
-                K = 1 - Blinha;
-            }
-
-            C = (1-Rlinha-K)/(1-K);
-            M = (1-Glinha-K)/(1-K);
-            Y = (1-Blinha-K)/(1-K);
-
-            cout << fixed << setprecision(0) << C <<"%, "<< M <<"%, "<< Y << "%, "<< K << "%"<< endl;
+            cout << fixed << setprecision(2) << C <<"%, "<< M <<"%, "<< Y << "%, "<< K * 100 << "%"<< endl;
 
         } else if(inicio == 6){
             // Escala de cinza
