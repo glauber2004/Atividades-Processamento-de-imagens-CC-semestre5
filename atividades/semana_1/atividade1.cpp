@@ -19,7 +19,7 @@ int main (){
 
     //variaveis necessárias
     float R, G, B;
-   // float H, S, V;
+    float H, S, V;
     float C, M, Y, K;
     
 
@@ -58,30 +58,25 @@ int main (){
             } 
 
 
-
-            // variaveis para utilização HSV -- CMYK 
-            double Rlinha, Glinha, Blinha;
-            double minimo, maximo;
-            Rlinha = R/255;
-            Glinha = G/255; 
-            Blinha = B/255;
+            // variaveis para utilização -- CMYK 
+            float minimo, maximo;
 
             //valor maximo
-            if(Rlinha >= Glinha && Rlinha >= Blinha){
-                maximo = Rlinha;
-            } else if(Glinha >= Rlinha && Glinha >= Blinha){
-                maximo = Glinha;
-            } else if(Blinha >= Rlinha && Blinha >= Glinha){
-                maximo = Blinha;
+            if(R >= G && R >= B){
+                maximo = R;
+            } else if(G >= R && G >= B){
+                maximo = G;
+            } else if(B >= R && B >= G){
+                maximo = B;
             }
 
             //valor minimo
-            if(Rlinha <= Glinha && Rlinha <= Blinha){
-                minimo = Rlinha;
-            } else if(Glinha <= Rlinha && Glinha <= Blinha){
-                minimo = Glinha;
-            } else if(Blinha <= Rlinha && Blinha <= Glinha){
-                minimo = Blinha;
+            if(R <= G && R <= B){
+                minimo = R;
+            } else if(G <= R && G <= B){
+                minimo = G;
+            } else if(B <= R && B <= G){
+                minimo = B;
             }
 
 
@@ -100,13 +95,47 @@ int main (){
 
 
         } else if (inicio == 2){
-            // conversão de RGB para HSV
 
-        
+
+            // conversão de RGB para HSV
+            /*
+            if (R = maximo && G >= B){
+                H = 60 * ((G - B) / (maximo - minimo));
+            } else if(R = maximo && G < B){
+                H = 60 * ((G - B) / (maximo - minimo) + 360);
+            } else if(G = maximo){
+                H = 60 * ((B - R) / (maximo - minimo) + 120);
+            } else if (B = maximo){
+                H = 60 * ((R - G) / (maximo - minimo) + 240);
+            } else {
+                cout << "Valor Incorreto digitado" << endl;
+            }
+            */
+            
+            H = 60 * ((G - B) / (maximo - minimo));
+            S = (maximo - minimo) / maximo;
+            V = 100 - ((1 - maximo / 255) * 100);
+
+            cout << fixed << setprecision(2) << H << " graus, " << S * 100 << "%, " << V << "% " << endl;
 
 
         } else if (inicio == 4){
             // conversão de RGB para CMYK
+            double Rlinha, Glinha, Blinha;
+            double maximo;
+            Rlinha = R/255;
+            Glinha = G/255; 
+            Blinha = B/255;
+
+            //valor maximo
+            if(Rlinha >= Glinha && Rlinha >= Blinha){
+                maximo = Rlinha;
+            } else if(Glinha >= Rlinha && Glinha >= Blinha){
+                maximo = Glinha;
+            } else if(Blinha >= Rlinha && Blinha >= Glinha){
+                maximo = Blinha;
+            }
+
             K = (1 - maximo);
             C = ((1-Rlinha-K)/(1-K)) * 100;
             M = ((1-Glinha-K)/(1-K)) * 100;
